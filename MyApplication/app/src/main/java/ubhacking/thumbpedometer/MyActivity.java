@@ -17,10 +17,10 @@ public class MyActivity extends Activity{
         super.onCreate(savedInstanceState);
         Data data = new Data();
         setContentView(R.layout.activity_my);
-        System.out.println("This is a test");
+//        System.out.println("This is a test");
 
         View v = getWindow().getDecorView();
-        System.out.println("View Set");
+//        System.out.println("View Set");
 
         v.setOnTouchListener(new Touchable(data));
 

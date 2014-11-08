@@ -12,7 +12,7 @@ public class Touchable implements View.OnTouchListener{
     public Touchable(Data d){
         super();
         _data=d;
-        System.out.println("Touchable Created");
+//        System.out.println("Touchable Created");
     }
 
     //Calculates total distance of motion _event
@@ -41,18 +41,18 @@ public class Touchable implements View.OnTouchListener{
         float xInit=0, yInit=0, xFinal=0, yFinal=0;
 
         if(motionEvent.getAction() == MotionEvent.ACTION_DOWN){
-            System.out.println("Touch Start");
+//            System.out.println("Touch Start");
             xInit=motionEvent.getRawX();
             yInit=motionEvent.getRawY();
-            System.out.println("Raw x: "+motionEvent.getRawX());
-            System.out.println("Raw y: "+motionEvent.getRawY());
+//            System.out.println("Raw x: "+motionEvent.getRawX());
+//            System.out.println("Raw y: "+motionEvent.getRawY());
         }
         else if(motionEvent.getAction() == MotionEvent.ACTION_UP){
-            System.out.println("Touch end"+'\n');
+//            System.out.println("Touch end"+'\n');
             xFinal= motionEvent.getRawX();
             yFinal = motionEvent.getRawY();
-            System.out.println("Raw x: "+motionEvent.getRawX());
-            System.out.println("Raw y: "+motionEvent.getRawY());
+//            System.out.println("Raw x: "+motionEvent.getRawX());
+//            System.out.println("Raw y: "+motionEvent.getRawY());
         }
         _data.setX(xFinal-xInit);
         _data.setY(yFinal-yInit);
