@@ -45,8 +45,8 @@ public class Touchable implements View.OnTouchListener{
 //            System.out.println("Touch Start");
             xInit=motionEvent.getRawX();
             yInit=motionEvent.getRawY();
-//            System.out.println("Raw x: "+motionEvent.getRawX());
-//            System.out.println("Raw y: "+motionEvent.getRawY());
+            System.out.println("Raw x: "+motionEvent.getRawX());
+            System.out.println("Raw y: "+motionEvent.getRawY());
         }
         else {
             if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
@@ -54,8 +54,8 @@ public class Touchable implements View.OnTouchListener{
                 _data.setY(motionEvent.getRawY() - yInit);
                 _data.setTotalDist(motionEvent.getRawX() - xInit, motionEvent.getRawY() - yInit);
 //            System.out.println("Touch end"+'\n');
-//            System.out.println("Raw x: "+motionEvent.getRawX());
-//            System.out.println("Raw y: "+motionEvent.getRawY());
+            System.out.println("Raw x: "+motionEvent.getRawX());
+            System.out.println("Raw y: "+motionEvent.getRawY());
             }
         }
 
