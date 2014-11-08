@@ -42,6 +42,7 @@ public class Touchable implements View.OnTouchListener{
 //        System.out.println("getX: "+motionEvent.getX());
 //        System.out.println("getY: "+motionEvent.getY());
         System.out.println("Touch complete");
+
         return true;
     }
 }

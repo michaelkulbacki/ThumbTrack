@@ -21,7 +21,7 @@ public class MyActivity extends Activity{
         View v = getWindow().getDecorView();
         System.out.println("View Set");
 
-        v.setOnTouchListener(new Touchable());
+        v.setOnDragListener(new Dragger());
 
 
     }
