@@ -55,6 +55,8 @@ public class Touchable implements View.OnTouchListener{
             System.out.println("Raw y: "+motionEvent.getRawY());
         }
         _data.setX(xFinal-xInit);
+        _data.setY(yFinal-yInit);
+        _data.setTotalDist(xFinal-xInit,yFinal-yInit);
 
 //        switch(motionEvent.getAction()){
 //
