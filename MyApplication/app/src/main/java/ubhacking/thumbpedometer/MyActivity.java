@@ -17,8 +17,16 @@ public class MyActivity extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my);
         System.out.println("This is a test");
-        View v = (View)findViewById(getCurrentFocus().getId());
-        v.setOnTouchListener(new Touchable());
+
+        View v =findViewById(getCurrentFocus().getId());
+
+        v.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                System.out.print("Pressed");
+                return true;
+            }
+        });
 
 
     }
