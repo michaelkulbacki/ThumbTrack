@@ -36,10 +36,12 @@ public class Touchable implements View.OnTouchListener{
 
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent){
+        System.out.println("Touch Start");
         System.out.println("Raw x: "+motionEvent.getRawX());
         System.out.println("Raw y: "+motionEvent.getRawY());
-        System.out.println("getX: "+motionEvent.getX());
-        System.out.println("getY: "+motionEvent.getY());
+//        System.out.println("getX: "+motionEvent.getX());
+//        System.out.println("getY: "+motionEvent.getY());
+        System.out.println("Touch complete");
         return true;
     }
 }
