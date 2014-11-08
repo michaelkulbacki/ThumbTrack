@@ -8,9 +8,10 @@ import android.view.View;
  */
 public class Touchable implements View.OnTouchListener{
     private MotionEvent.PointerCoords _event;
-
-    public Touchable(){
+    private Data _data;
+    public Touchable(Data d){
         super();
+        _data=d;
         System.out.println("Touchable Created");
     }
 
@@ -37,18 +38,23 @@ public class Touchable implements View.OnTouchListener{
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent){
         //System.out.println(motionEvent.getAction());
+        float xInit=0, yInit=0, xFinal=0, yFinal=0;
 
         if(motionEvent.getAction() == MotionEvent.ACTION_DOWN){
             System.out.println("Touch Start");
+            xInit=motionEvent.getRawX();
+            yInit=motionEvent.getRawY();
             System.out.println("Raw x: "+motionEvent.getRawX());
             System.out.println("Raw y: "+motionEvent.getRawY());
         }
         else if(motionEvent.getAction() == MotionEvent.ACTION_UP){
             System.out.println("Touch end"+'\n');
-
+            xFinal= motionEvent.getRawX();
+            yFinal = motionEvent.getRawY();
             System.out.println("Raw x: "+motionEvent.getRawX());
             System.out.println("Raw y: "+motionEvent.getRawY());
         }
+        _data.setX(xFinal-xInit);
 
 //        switch(motionEvent.getAction()){
 //

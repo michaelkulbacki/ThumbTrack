@@ -9,4 +9,11 @@ public class Data {
     public Data(){
 
     }
+
+    //Set X Dist
+    public void setX(float xChange){
+
+        _xDist+=xChange;
+        System.out.println(_xDist);
+    }
 }
