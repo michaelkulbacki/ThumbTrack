@@ -2,6 +2,7 @@ package ubhacking.thumbpedometer;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,10 +13,16 @@ import android.widget.TextView;
 
 public class MyActivity extends Activity{
 
+//    Data _data;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Data data = new Data();
+//        Data data;
+            DisplayMetrics dm = new DisplayMetrics();
+            getWindowManager().getDefaultDisplay().getMetrics(dm);
+            Data data = new Data(dm);
+
+
         setContentView(R.layout.activity_my);
 //        System.out.println("This is a test");
 
@@ -23,6 +30,7 @@ public class MyActivity extends Activity{
 //        System.out.println("View Set");
 
         v.setOnTouchListener(new Touchable(data));
+
 
 
     }
