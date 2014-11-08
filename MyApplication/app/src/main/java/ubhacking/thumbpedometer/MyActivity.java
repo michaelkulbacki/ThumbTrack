@@ -18,7 +18,7 @@ public class MyActivity extends Activity{
         setContentView(R.layout.activity_my);
         System.out.println("This is a test");
 
-        View v =findViewById(getCurrentFocus().getId());
+        View v =getWindow().getDecorView().getRootView();
 
         v.setOnTouchListener(new View.OnTouchListener() {
             @Override
