@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.TextView;
 
 
 public class MyActivity extends Activity implements View.OnTouchListener{
@@ -40,6 +41,8 @@ public class MyActivity extends Activity implements View.OnTouchListener{
 
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
+          TextView test = (TextView)findViewById(R.id.test);
+            test.setText("Touch Recorded");
 
 //        System.out.println("Touch Detected.");
 //        System.out.println("Raw x: "+motionEvent.getRawX());
