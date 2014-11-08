@@ -9,6 +9,11 @@ import android.view.View;
 public class Touchable implements View.OnTouchListener{
     private MotionEvent.PointerCoords _event;
 
+    public Touchable(){
+        super();
+        System.out.println("Touchable Created");
+    }
+
     //Calculates total distance of motion _event
     public float calcDist(float x, float y){
         return (float)Math.abs((Math.pow(x,2)+Math.pow(y,2)));
