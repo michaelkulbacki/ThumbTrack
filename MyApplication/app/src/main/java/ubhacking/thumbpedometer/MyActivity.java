@@ -2,16 +2,20 @@ package ubhacking.thumbpedometer;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
 
 
-public class MyActivity extends Activity {
+public class MyActivity extends Activity implements View.OnTouchListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my);
+
     }
 
 
@@ -32,5 +36,16 @@ public class MyActivity extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onTouch(View view, MotionEvent motionEvent) {
+
+//        System.out.println("Touch Detected.");
+//        System.out.println("Raw x: "+motionEvent.getRawX());
+//        System.out.println("Raw y: "+motionEvent.getRawY());
+//        System.out.println("getX: "+motionEvent.getX());
+//        System.out.println("getY: "+motionEvent.getY());
+        return true;
     }
 }
