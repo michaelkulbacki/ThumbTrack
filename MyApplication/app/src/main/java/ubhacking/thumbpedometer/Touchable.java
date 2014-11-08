@@ -15,14 +15,14 @@ public class Touchable implements View.OnTouchListener{
     }
 
     //Gets x component of motion _event
-    public float getX(){
-        return _event.x;
-    }
+//    public float getX(){
+//        return _event.x;
+//    }
 
     //Gets y component of motion _event
-    public float getY(){
-        return _event.y;
-    }
+//    public float getY(){
+//        return _event.y;
+//    }
 
     //Gets total dist moved
     public float getTotalDist(){
