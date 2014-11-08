@@ -18,13 +18,6 @@ public class MyActivity extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        Notification notification = new Notification.Builder(this)
-                .setContentTitle("Thumb Pedometer is Running")
-                .setContentText("Hopefully this is a working test")
-//                .setSmallIcon(R.drawable.new_mail)
-//                .setLargeIcon(aBitmap)
-                .build();
-
         super.onCreate(savedInstanceState);
 
 //        Data data;
