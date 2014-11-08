@@ -10,13 +10,15 @@ import android.view.View;
 import android.widget.TextView;
 
 
-public class MyActivity extends Activity implements View.OnTouchListener{
+public class MyActivity extends Activity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my);
         System.out.println("This is a test");
+        View v = (View)findViewById(getCurrentFocus().getId());
+        v.setOnTouchListener(new Touchable());
 
 
     }
@@ -41,16 +43,16 @@ public class MyActivity extends Activity implements View.OnTouchListener{
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public boolean onTouch(View view, MotionEvent motionEvent) {
-          TextView test = (TextView)findViewById(R.id.test);
-            test.setText("Touch Recorded");
-
-          System.out.println("Touch Detected.");
-//        System.out.println("Raw x: "+motionEvent.getRawX());
-//        System.out.println("Raw y: "+motionEvent.getRawY());
-//        System.out.println("getX: "+motionEvent.getX());
-//        System.out.println("getY: "+motionEvent.getY());
-        return true;
-    }
+//    @Override
+//    public boolean onTouch(View view, MotionEvent motionEvent) {
+//          TextView test = (TextView)findViewById(R.id.test);
+//            test.setText("Touch Recorded");
+//
+//          System.out.println("Touch Detected.");
+////        System.out.println("Raw x: "+motionEvent.getRawX());
+////        System.out.println("Raw y: "+motionEvent.getRawY());
+////        System.out.println("getX: "+motionEvent.getX());
+////        System.out.println("getY: "+motionEvent.getY());
+//        return true;
+//    }
 }
