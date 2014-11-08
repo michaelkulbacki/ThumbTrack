@@ -9,6 +9,12 @@ public class Data {
     private float _xDistPixels, _yDistPixels, _totalDistPixels, _totalDistInch,_xDistInch, _yDistInch;
     private float _density;
 
+    //No arguement,  needs to have density set later
+    public Data(){
+
+    }
+
+
     public Data(DisplayMetrics d){
          _density= d.xdpi;
         System.out.println("Density: "+_density);
@@ -38,4 +44,10 @@ public class Data {
         System.out.println("Total Distance scrolled: "+ _totalDistPixels);
         System.out.println("Total Distance inch: "+_totalDistInch);
     }
+
+    public void setDensity(float pixDensity){
+        _density = pixDensity;
+    }
+
+    public float getXDist(){return _xDistPixels/_density;}
 }

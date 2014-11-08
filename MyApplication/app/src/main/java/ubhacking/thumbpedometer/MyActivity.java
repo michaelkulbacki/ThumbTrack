@@ -1,6 +1,8 @@
 package ubhacking.thumbpedometer;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -12,17 +14,17 @@ import android.widget.TextView;
 
 
 public class MyActivity extends Activity{
+    DisplayMetrics _dm= new DisplayMetrics();
+    private boolean _initilized=false;
+    private ServiceConnection _connect;
 
-//    Data _data;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        Data data;
-            DisplayMetrics dm = new DisplayMetrics();
-            getWindowManager().getDefaultDisplay().getMetrics(dm);
-            Data data = new Data(dm);
-
-
+        this.bindService(new Intent(),,null);
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        Data data = new Data(dm);
         setContentView(R.layout.activity_my);
 //        System.out.println("This is a test");
 
@@ -35,36 +37,10 @@ public class MyActivity extends Activity{
 
     }
 
-
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.my, menu);
-        return true;
+    protected void onPause() {
+
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
-//    @Override
-//    public boolean onTouch(View view, MotionEvent motionEvent) {
-//          TextView test = (TextView)findViewById(R.id.test);
-//            test.setText("Touch Recorded");
-//
-//          System.out.println("Touch Detected.");
-////        System.out.println("Raw x: "+motionEvent.getRawX());
-////        System.out.println("Raw y: "+motionEvent.getRawY());
-////        System.out.println("getX: "+motionEvent.getX());
-////        System.out.println("getY: "+motionEvent.getY());
-//        return true;
-//    }
 }
