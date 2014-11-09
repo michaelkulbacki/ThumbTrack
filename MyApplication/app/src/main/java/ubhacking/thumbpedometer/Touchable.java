@@ -1,5 +1,6 @@
 package ubhacking.thumbpedometer;
 
+import android.view.VelocityTracker;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
@@ -10,6 +11,8 @@ import android.widget.TextView;
 public class Touchable implements View.OnTouchListener{
 
     private MotionEvent.PointerCoords _event;
+    private int _count;
+    private double[] _list;
     private Data _data;
     private TextView _Xinch, _Yinch, _Totalinch;
     private float xInit, yInit;
@@ -17,12 +20,13 @@ public class Touchable implements View.OnTouchListener{
 
     public Touchable(Data d, TextView Xin, TextView Yin, TextView Totalin, float density){
         super();
+        _count = 0;
+        _list = new double[10];
         _data=d;
         _Xinch = Xin;
         _Yinch = Yin;
         _Totalinch = Totalin;
         _density = density;
-//        System.out.println("Touchable Created");
     }
 
     //Calculates total distance of motion _event
@@ -30,32 +34,43 @@ public class Touchable implements View.OnTouchListener{
         return (float)Math.abs((Math.pow(x,2)+Math.pow(y,2)));
     }
 
-    //Gets x component of motion _event
-//    public float getX(){
-//        return _event.x;
-//    }
-
-    //Gets y component of motion _event
-//    public float getY(){
-//        return _event.y;
-//    }
 
     //Gets total dist moved
     public float getTotalDist(){
         return calcDist(_event.x, _event.y);
     }
 
+    private VelocityTracker vTracker = null;
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent){
-        //System.out.println(motionEvent.getAction());
+
 
 
         if(motionEvent.getAction() == MotionEvent.ACTION_DOWN){
-//            System.out.println("Touch Start");
+            if(vTracker == null){
+                vTracker = VelocityTracker.obtain();
+            }
+            else {
+                vTracker.clear();
+            }
+            vTracker.addMovement(motionEvent);
+
             xInit=motionEvent.getRawX();
             yInit=motionEvent.getRawY();
             System.out.println("Raw x: "+motionEvent.getRawX());
             System.out.println("Raw y: "+motionEvent.getRawY());
+        }
+        if(motionEvent.getAction() == MotionEvent.ACTION_MOVE){
+            vTracker.addMovement(motionEvent);
+            vTracker.computeCurrentVelocity(1000);
+            double xVel = (double)vTracker.getXVelocity();
+            double yVel = (double)vTracker.getYVelocity();
+            double total = Math.sqrt(Math.pow(xVel,2)+Math.pow(yVel,2));
+            _list[_count++] = total;
+            if(_count == 10){
+                _count = 0;
+                System.out.println("Average Velocity "+velocity(_list));
+            }
         }
         else {
             if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
@@ -64,15 +79,11 @@ public class Touchable implements View.OnTouchListener{
               _xDist=  _data.setX(motionEvent.getRawX() - xInit);
               _yDist=  _data.setY(motionEvent.getRawY() - yInit);
                 _totalDist=(float)Math.abs(Math.sqrt(Math.pow(_xDist,2)+Math.pow(_yDist,2)));
-//                System.out.println("Total x distance: "+a);
-//                System.out.println("Total y distance: "+b);
-//                _data.setTotalDist(motionEvent.getRawX() - xInit, motionEvent.getRawY() - yInit);
                 _Xinch.setText("" + calcXInch());
                 _Yinch.setText("" + calcYInch());
                 _Totalinch.setText("" + calcTotalInch());
 
 
-//            System.out.println("Touch end"+'\n');
 
             }
         }
@@ -97,4 +108,9 @@ public class Touchable implements View.OnTouchListener{
     public float calcYMiles(){return calcYFeet()/5280;}
 
     public float calcTotalMiles(){return calcTotalFeet()/5280;}
+
+    public double velocity(double[] list){
+        double velocity = (list[0]+list[1]+list[2]+list[3]+list[4]+list[5]+list[6]+list[7]+list[8]+list[9])/10.0;
+        return velocity;
+    }
 }
