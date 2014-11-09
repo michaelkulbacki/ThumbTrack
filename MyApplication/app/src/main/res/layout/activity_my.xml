@@ -16,7 +16,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Hello!!"
         android:id="@+id/textView"
-        android:layout_marginTop="149dp"
+        android:layout_marginTop="165dp"
         android:textColor="#ffffffff"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
