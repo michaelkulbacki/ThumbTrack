@@ -8,12 +8,18 @@ import android.widget.TextView;
  * Created by John on 11/7/14.
  */
 public class Touchable implements View.OnTouchListener{
+
     private MotionEvent.PointerCoords _event;
     private Data _data;
+    private TextView _textView;
     private float xInit, yInit;
-    public Touchable(Data d){
+    private float _xDist, _yDist, _totalDist, _density;
+
+    public Touchable(Data d, TextView view, float density){
         super();
         _data=d;
+        _textView = view;
+        _density = density;
 //        System.out.println("Touchable Created");
     }
 
@@ -53,11 +59,12 @@ public class Touchable implements View.OnTouchListener{
             if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
                 System.out.println("Raw x: "+motionEvent.getRawX());
                 System.out.println("Raw y: "+motionEvent.getRawY());
-              float a=  _data.setX(motionEvent.getRawX() - xInit);
-              float b=  _data.setY(motionEvent.getRawY() - yInit);
-                System.out.println("Total x distance: "+a);
-                System.out.println("Total y distance: "+b);
+              _xDist=  _data.setX(motionEvent.getRawX() - xInit);
+              _yDist=  _data.setY(motionEvent.getRawY() - yInit);
+//                System.out.println("Total x distance: "+a);
+//                System.out.println("Total y distance: "+b);
                 _data.setTotalDist(motionEvent.getRawX() - xInit, motionEvent.getRawY() - yInit);
+                _textView.setText("" + calcXInch());
 //            System.out.println("Touch end"+'\n');
 
             }
@@ -65,4 +72,22 @@ public class Touchable implements View.OnTouchListener{
 
         return true;
     }
+
+    public float calcXInch(){ return  _xDist/_density;}
+
+    public float calcYInch(){return _yDist/_density;}
+
+    public float calcTotalInch(){return _totalDist/_density;}
+
+    public float calcXFeet(){return calcXInch()/12;}
+
+    public float calcYFeet(){return calcYInch()/12;}
+
+    public float calcTotalFeet(){return calcTotalInch()/12;}
+
+    public float calcXMiles(){return calcXFeet()/5280;}
+
+    public float calcYMiles(){return calcYFeet()/5280;}
+
+    public float calcTotalMiles(){return calcTotalFeet()/5280;}
 }

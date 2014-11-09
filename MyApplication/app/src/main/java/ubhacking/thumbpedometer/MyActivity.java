@@ -38,7 +38,6 @@ public class MyActivity extends Activity{
         data.setX(_xDist);
         data.setY(_yDist);
         TextView totalInches = (TextView)findViewById(R.id.totalinches);
-        totalInches.setText("I made a change");
         _totalDist = data.setTotalDist(_xDist,_yDist);
         System.out.println("x distance from float create: " + _xDist);
         System.out.println("y distance from float create: "+_yDist);
@@ -46,7 +45,7 @@ public class MyActivity extends Activity{
 
         View v = getWindow().getDecorView();
 
-        v.setOnTouchListener(new Touchable(data));  //Must give value of data class
+        v.setOnTouchListener(new Touchable(data, totalInches, _density));  //Must give value of data class
     }
 
     @Override
@@ -82,23 +81,7 @@ public class MyActivity extends Activity{
         return _density = dm.xdpi;
     }
 
-    public float calcXInch(){ return  _xDist/_density;}
 
-    public float calcYInch(){return _yDist/_density;}
-
-    public float calcTotalInch(){return _totalDist/_density;}
-
-    public float calcXFeet(){return calcXInch()/12;}
-
-    public float calcYFeet(){return calcYInch()/12;}
-
-    public float calcTotalFeet(){return calcTotalInch()/12;}
-
-    public float calcXMiles(){return calcXFeet()/5280;}
-
-    public float calcYMiles(){return calcYFeet()/5280;}
-
-    public float calcTotalMiles(){return calcTotalFeet()/5280;}
 
 
 }
