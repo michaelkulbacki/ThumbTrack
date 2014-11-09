@@ -24,7 +24,7 @@ public class Splash extends Activity {
                 }
                 finally{
                     Intent startApplication;
-                    startApplication = new Intent("android.intent.action.MAIN");
+                    startApplication = new Intent("ubhacking.thumbpedometer.MyActivity");
                     startActivity(startApplication);
                 }
             }
