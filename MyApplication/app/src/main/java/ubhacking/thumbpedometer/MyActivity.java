@@ -31,6 +31,7 @@ public class MyActivity extends Activity{
         TextView Xinch = (TextView)findViewById(R.id.Xinch);
         TextView Yinch = (TextView)findViewById(R.id.Yinch);
         TextView Totalinch = (TextView)findViewById(R.id.Totalinch);
+        TextView Velocity = (TextView)findViewById(R.id.Velocity);
 
 
 
@@ -41,7 +42,7 @@ public class MyActivity extends Activity{
 
         View v = getWindow().getDecorView();
 
-        v.setOnTouchListener(new Touchable(data, Xinch, Yinch, Totalinch, _density));  //Must give value of data class
+        v.setOnTouchListener(new Touchable(data, Xinch, Yinch, Totalinch, Velocity, _density));  //Must give value of data class
     }
 
     @Override

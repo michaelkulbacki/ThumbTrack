@@ -14,11 +14,11 @@ public class Touchable implements View.OnTouchListener{
     private int _count;
     private double[] _list;
     private Data _data;
-    private TextView _Xinch, _Yinch, _Totalinch;
+    private TextView _Xinch, _Yinch, _Totalinch, _velocity;
     private float xInit, yInit;
     private float _xDist, _yDist, _totalDist, _density;
 
-    public Touchable(Data d, TextView Xin, TextView Yin, TextView Totalin, float density){
+    public Touchable(Data d, TextView Xin, TextView Yin, TextView Totalin, TextView velocity, float density){
         super();
         _count = 0;
         _list = new double[10];
@@ -26,6 +26,7 @@ public class Touchable implements View.OnTouchListener{
         _Xinch = Xin;
         _Yinch = Yin;
         _Totalinch = Totalin;
+        _velocity = velocity;
         _density = density;
     }
 
@@ -82,9 +83,7 @@ public class Touchable implements View.OnTouchListener{
                 _Xinch.setText("" + calcXInch());
                 _Yinch.setText("" + calcYInch());
                 _Totalinch.setText("" + calcTotalInch());
-
-
-
+                _velocity.setText("" + velocity(_list));
             }
         }
 
