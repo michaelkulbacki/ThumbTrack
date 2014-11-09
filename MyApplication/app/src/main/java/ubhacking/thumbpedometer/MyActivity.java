@@ -29,14 +29,9 @@ public class MyActivity extends Activity{
         data.setX(_xDist);
         data.setY(_yDist);
         TextView Xinch = (TextView)findViewById(R.id.Xinch);
-        TextView Xfeet = (TextView)findViewById(R.id.Xfeet);
-        TextView Xmiles = (TextView)findViewById(R.id.XMiles);
         TextView Yinch = (TextView)findViewById(R.id.Yinch);
-        TextView Yfeet = (TextView)findViewById(R.id.Yfeet);
-        TextView Ymiles = (TextView)findViewById(R.id.Ymiles);
         TextView Totalinch = (TextView)findViewById(R.id.Totalinch);
-        TextView Totalfeet = (TextView)findViewById(R.id.Totalfeet);
-        TextView Totalmiles = (TextView)findViewById(R.id.Totalmiles);
+
 
 
         _totalDist = data.setTotalDist(_xDist,_yDist);
@@ -46,8 +41,7 @@ public class MyActivity extends Activity{
 
         View v = getWindow().getDecorView();
 
-        v.setOnTouchListener(new Touchable(data, Xinch, Xfeet, Xmiles,
-                Yinch, Yfeet, Ymiles, Totalinch, Totalfeet, Totalmiles, _density));  //Must give value of data class
+        v.setOnTouchListener(new Touchable(data, Xinch, Yinch, Totalinch, _density));  //Must give value of data class
     }
 
     @Override

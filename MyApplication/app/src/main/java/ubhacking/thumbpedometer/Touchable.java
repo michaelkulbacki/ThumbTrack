@@ -1,27 +1,27 @@
 package ubhacking.thumbpedometer;
 
-import java.lang.reflect.Array;
 import android.view.MotionEvent;
-import android.view.VelocityTracker;
 import android.view.View;
+import android.widget.TextView;
 
 /**
  * Created by John on 11/7/14.
  */
-
-
 public class Touchable implements View.OnTouchListener{
-    private int[] _list;
-    private int _count;
+
     private MotionEvent.PointerCoords _event;
     private Data _data;
+    private TextView _Xinch, _Yinch, _Totalinch;
     private float xInit, yInit;
-    public Touchable(Data d){
+    private float _xDist, _yDist, _totalDist, _density;
 
+    public Touchable(Data d, TextView Xin, TextView Yin, TextView Totalin, float density){
         super();
         _data=d;
-        _list = new int[10];
-        _count = 0;
+        _Xinch = Xin;
+        _Yinch = Yin;
+        _Totalinch = Totalin;
+        _density = density;
 //        System.out.println("Touchable Created");
     }
 
@@ -45,56 +45,33 @@ public class Touchable implements View.OnTouchListener{
         return calcDist(_event.x, _event.y);
     }
 
-    private VelocityTracker vTracker = null;
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent){
         //System.out.println(motionEvent.getAction());
 
 
         if(motionEvent.getAction() == MotionEvent.ACTION_DOWN){
-            if(vTracker == null){
-                vTracker = VelocityTracker.obtain();
-            }
-            else{
-                vTracker.clear();
-            }
-            vTracker.addMovement(motionEvent);
-
 //            System.out.println("Touch Start");
             xInit=motionEvent.getRawX();
             yInit=motionEvent.getRawY();
             System.out.println("Raw x: "+motionEvent.getRawX());
             System.out.println("Raw y: "+motionEvent.getRawY());
         }
-        if(motionEvent.getAction()== MotionEvent.ACTION_MOVE){
-            vTracker.addMovement(motionEvent);
-            vTracker.computeCurrentVelocity(1000);
-            int Xvel = (int)vTracker.getXVelocity();
-            int Yvel = (int)vTracker.getYVelocity();
-            double totalV = Math.sqrt(Math.pow(Xvel,2) + Math.pow(Yvel,2));
-            int total = (int)totalV;
-            _list[_count] = total;
-            _count++;
-            if(_count==10){
-                _count = 0;
-                System.out.println("Average Velocity " + velocity(_list));
-            }
-
-
-
-        }
-        if(motionEvent.getAction() == MotionEvent.ACTION_CANCEL){
-            vTracker.recycle();
-        }
         else {
             if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
                 System.out.println("Raw x: "+motionEvent.getRawX());
                 System.out.println("Raw y: "+motionEvent.getRawY());
-              float a=  _data.setX(motionEvent.getRawX() - xInit);
-              float b=  _data.setY(motionEvent.getRawY() - yInit);
-                System.out.println("Total x distance: "+a);
-                System.out.println("Total y distance: "+b);
-                _data.setTotalDist(motionEvent.getRawX() - xInit, motionEvent.getRawY() - yInit);
+              _xDist=  _data.setX(motionEvent.getRawX() - xInit);
+              _yDist=  _data.setY(motionEvent.getRawY() - yInit);
+                _totalDist=(float)Math.abs(Math.sqrt(Math.pow(_xDist,2)+Math.pow(_yDist,2)));
+//                System.out.println("Total x distance: "+a);
+//                System.out.println("Total y distance: "+b);
+//                _data.setTotalDist(motionEvent.getRawX() - xInit, motionEvent.getRawY() - yInit);
+                _Xinch.setText("" + calcXInch());
+                _Yinch.setText("" + calcYInch());
+                _Totalinch.setText("" + calcTotalInch());
+
+
 //            System.out.println("Touch end"+'\n');
 
             }
@@ -103,8 +80,21 @@ public class Touchable implements View.OnTouchListener{
         return true;
     }
 
-    public int velocity(int[] list){
-        int velocity = (list[0] + list[1] + list[2] + list[3] + list[4] + list[5] + list[6] + list[7] + list[8] + list[9])/2;
-        return velocity;
-    }
+    public float calcXInch(){ return  _xDist/_density;}
+
+    public float calcYInch(){return _yDist/_density;}
+
+    public float calcTotalInch(){return _totalDist/_density;}
+
+    public float calcXFeet(){return calcXInch()/12;}
+
+    public float calcYFeet(){return calcYInch()/12;}
+
+    public float calcTotalFeet(){return calcTotalInch()/12;}
+
+    public float calcXMiles(){return calcXFeet()/5280;}
+
+    public float calcYMiles(){return calcYFeet()/5280;}
+
+    public float calcTotalMiles(){return calcTotalFeet()/5280;}
 }
