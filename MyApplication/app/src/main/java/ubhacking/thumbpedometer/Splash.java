@@ -11,13 +11,15 @@ public class Splash extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_screen);
+
 
         Thread t = new Thread(){
             public void run(){
                 try{
-                    sleep(5000);
+                    sleep(3000);
                 }
                 catch(InterruptedException e){
                     e.printStackTrace();

@@ -18,6 +18,7 @@ public class MyActivity extends Activity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getActionBar().hide();
         super.onCreate(savedInstanceState);
 
         DisplayMetrics dm = new DisplayMetrics();
