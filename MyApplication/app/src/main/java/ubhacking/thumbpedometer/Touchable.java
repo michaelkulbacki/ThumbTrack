@@ -1,36 +1,27 @@
 package ubhacking.thumbpedometer;
 
+import java.lang.reflect.Array;
 import android.view.MotionEvent;
+import android.view.VelocityTracker;
 import android.view.View;
-import android.widget.TextView;
 
 /**
  * Created by John on 11/7/14.
  */
-public class Touchable implements View.OnTouchListener{
 
+
+public class Touchable implements View.OnTouchListener{
+    private int[] _list;
+    private int _count;
     private MotionEvent.PointerCoords _event;
     private Data _data;
-    private TextView _Xinch, _Xfeet, _Xmiles, _Yinch, _Yfeet, _Ymiles, _Totalinch,
-            _Totalfeet, _Totalmiles;
     private float xInit, yInit;
-    private float _xDist, _yDist, _totalDist, _density;
+    public Touchable(Data d){
 
-    public Touchable(Data d, TextView Xin, TextView Xfeet, TextView Xmiles,
-                     TextView Yin, TextView Yfeet, TextView Ymiles,
-                     TextView Totalin, TextView Totalfeet, TextView Totalmiles, float density){
         super();
         _data=d;
-        _Xinch = Xin;
-        _Xfeet = Xfeet;
-        _Xmiles = Xmiles;
-        _Yinch = Yin;
-        _Yfeet = Yfeet;
-        _Ymiles = Ymiles;
-        _Totalinch = Totalin;
-        _Totalfeet = Totalfeet;
-        _Totalmiles = Totalmiles;
-        _density = density;
+        _list = new int[10];
+        _count = 0;
 //        System.out.println("Touchable Created");
     }
 
@@ -54,37 +45,56 @@ public class Touchable implements View.OnTouchListener{
         return calcDist(_event.x, _event.y);
     }
 
+    private VelocityTracker vTracker = null;
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent){
         //System.out.println(motionEvent.getAction());
 
 
         if(motionEvent.getAction() == MotionEvent.ACTION_DOWN){
+            if(vTracker == null){
+                vTracker = VelocityTracker.obtain();
+            }
+            else{
+                vTracker.clear();
+            }
+            vTracker.addMovement(motionEvent);
+
 //            System.out.println("Touch Start");
             xInit=motionEvent.getRawX();
             yInit=motionEvent.getRawY();
             System.out.println("Raw x: "+motionEvent.getRawX());
             System.out.println("Raw y: "+motionEvent.getRawY());
         }
+        if(motionEvent.getAction()== MotionEvent.ACTION_MOVE){
+            vTracker.addMovement(motionEvent);
+            vTracker.computeCurrentVelocity(1000);
+            int Xvel = (int)vTracker.getXVelocity();
+            int Yvel = (int)vTracker.getYVelocity();
+            double totalV = Math.sqrt(Math.pow(Xvel,2) + Math.pow(Yvel,2));
+            int total = (int)totalV;
+            _list[_count] = total;
+            _count++;
+            if(_count==10){
+                _count = 0;
+                System.out.println("Average Velocity " + velocity(_list));
+            }
+
+
+
+        }
+        if(motionEvent.getAction() == MotionEvent.ACTION_CANCEL){
+            vTracker.recycle();
+        }
         else {
             if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
                 System.out.println("Raw x: "+motionEvent.getRawX());
                 System.out.println("Raw y: "+motionEvent.getRawY());
-              _xDist=  _data.setX(motionEvent.getRawX() - xInit);
-              _yDist=  _data.setY(motionEvent.getRawY() - yInit);
-//                System.out.println("Total x distance: "+a);
-//                System.out.println("Total y distance: "+b);
+              float a=  _data.setX(motionEvent.getRawX() - xInit);
+              float b=  _data.setY(motionEvent.getRawY() - yInit);
+                System.out.println("Total x distance: "+a);
+                System.out.println("Total y distance: "+b);
                 _data.setTotalDist(motionEvent.getRawX() - xInit, motionEvent.getRawY() - yInit);
-                _Xinch.setText("" + calcXInch());
-                _Xfeet.setText("" + calcXFeet());
-                _Xmiles.setText("" + calcXMiles());
-                _Yinch.setText("" + calcYInch());
-                _Yfeet.setText("" + calcYFeet());
-                _Ymiles.setText("" + calcYMiles());
-                _Totalinch.setText("" + calcTotalInch());
-                _Totalfeet.setText("" + calcTotalFeet());
-                _Totalmiles.setText("" + calcTotalMiles());
-
 //            System.out.println("Touch end"+'\n');
 
             }
@@ -93,21 +103,8 @@ public class Touchable implements View.OnTouchListener{
         return true;
     }
 
-    public float calcXInch(){ return  _xDist/_density;}
-
-    public float calcYInch(){return _yDist/_density;}
-
-    public float calcTotalInch(){return _totalDist/_density;}
-
-    public float calcXFeet(){return calcXInch()/12;}
-
-    public float calcYFeet(){return calcYInch()/12;}
-
-    public float calcTotalFeet(){return calcTotalInch()/12;}
-
-    public float calcXMiles(){return calcXFeet()/5280;}
-
-    public float calcYMiles(){return calcYFeet()/5280;}
-
-    public float calcTotalMiles(){return calcTotalFeet()/5280;}
+    public int velocity(int[] list){
+        int velocity = (list[0] + list[1] + list[2] + list[3] + list[4] + list[5] + list[6] + list[7] + list[8] + list[9])/2;
+        return velocity;
+    }
 }
