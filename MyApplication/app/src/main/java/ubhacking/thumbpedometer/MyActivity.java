@@ -14,24 +14,20 @@ import android.widget.TextView;
 
 
 public class MyActivity extends Activity{
-    DisplayMetrics _dm= new DisplayMetrics();
-    private boolean _initilized=false;
-    private ServiceConnection _connect;
+    private float _density;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
+
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
-        Data data = new Data(dm);
+        _density = dm.xdpi;
+
         setContentView(R.layout.activity_my);
-//        System.out.println("This is a test");
-
         View v = getWindow().getDecorView();
-//        System.out.println("View Set");
 
-        v.setOnTouchListener(new Touchable(data));
+//        v.setOnTouchListener(new Touchable(data));  //Must give value of data class
 
 
 
@@ -39,7 +35,14 @@ public class MyActivity extends Activity{
 
     @Override
     protected void onPause() {
+        super.onPause();
+    }
 
+    @Override
+    protected void onDestroy() {
+
+        super.onDestroy();
+        //Write text file with density, xpixels, ypixels
     }
 
 

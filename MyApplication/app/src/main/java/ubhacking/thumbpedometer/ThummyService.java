@@ -25,7 +25,7 @@ public class ThummyService extends Service {
         _act = new MyActivity();
         DisplayMetrics dm = new DisplayMetrics();
         _act.getWindowManager().getDefaultDisplay().getMetrics(dm);
-        _data = new Data(dm);
+//        _data = new Data(dm);
 
         Log.d(TAG, "onCreate Finished");
     }
