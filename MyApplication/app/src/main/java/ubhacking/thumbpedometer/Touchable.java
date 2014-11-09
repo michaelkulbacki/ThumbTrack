@@ -52,32 +52,15 @@ public class Touchable implements View.OnTouchListener{
             if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
                 System.out.println("Raw x: "+motionEvent.getRawX());
                 System.out.println("Raw y: "+motionEvent.getRawY());
-                _data.setX(motionEvent.getRawX() - xInit);
-                _data.setY(motionEvent.getRawY() - yInit);
+              float a=  _data.setX(motionEvent.getRawX() - xInit);
+              float b=  _data.setY(motionEvent.getRawY() - yInit);
+                System.out.println("Total x distance: "+a);
+                System.out.println("Total y distance: "+b);
                 _data.setTotalDist(motionEvent.getRawX() - xInit, motionEvent.getRawY() - yInit);
 //            System.out.println("Touch end"+'\n');
 
             }
         }
-
-
-//        switch(motionEvent.getAction()){
-//
-//            case MotionEvent.ACTION_DOWN : {
-//                System.out.println("Touch Start");
-//                System.out.println("Raw x: "+motionEvent.getRawX());
-//                System.out.println("Raw y: "+motionEvent.getRawY());
-//            }
-//            case MotionEvent.ACTION_UP : {
-//                System.out.println("Touch end");
-//                System.out.println("Raw x: "+motionEvent.getRawX());
-//                System.out.println("Raw y: "+motionEvent.getRawY());
-//            }
-//        }
-
-//        System.out.println("getX: "+motionEvent.getX());
-//        System.out.println("getY: "+motionEvent.getY());
-       // System.out.println("Touch complete");
 
         return true;
     }
