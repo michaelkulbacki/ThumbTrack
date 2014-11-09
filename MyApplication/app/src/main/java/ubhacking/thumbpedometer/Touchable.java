@@ -63,9 +63,10 @@ public class Touchable implements View.OnTouchListener{
                 System.out.println("Raw y: "+motionEvent.getRawY());
               _xDist=  _data.setX(motionEvent.getRawX() - xInit);
               _yDist=  _data.setY(motionEvent.getRawY() - yInit);
+                _totalDist=(float)Math.abs(Math.sqrt(Math.pow(_xDist,2)+Math.pow(_yDist,2)));
 //                System.out.println("Total x distance: "+a);
 //                System.out.println("Total y distance: "+b);
-                _data.setTotalDist(motionEvent.getRawX() - xInit, motionEvent.getRawY() - yInit);
+//                _data.setTotalDist(motionEvent.getRawX() - xInit, motionEvent.getRawY() - yInit);
                 _Xinch.setText("" + calcXInch());
                 _Yinch.setText("" + calcYInch());
                 _Totalinch.setText("" + calcTotalInch());
