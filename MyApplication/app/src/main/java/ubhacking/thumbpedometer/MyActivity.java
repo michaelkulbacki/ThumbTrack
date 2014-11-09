@@ -1,23 +1,13 @@
 package ubhacking.thumbpedometer;
 
 import android.app.Activity;
-import android.content.Intent;
-import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.util.Scanner;
 
 
 public class MyActivity extends Activity{
@@ -38,7 +28,17 @@ public class MyActivity extends Activity{
         _density = _save.getFloat("density",setDensity());
         data.setX(_xDist);
         data.setY(_yDist);
-        TextView totalInches = (TextView)findViewById(R.id.totalinches);
+        TextView Xinch = (TextView)findViewById(R.id.Xinch);
+        TextView Xfeet = (TextView)findViewById(R.id.Xfeet);
+        TextView Xmiles = (TextView)findViewById(R.id.XMiles);
+        TextView Yinch = (TextView)findViewById(R.id.Yinch);
+        TextView Yfeet = (TextView)findViewById(R.id.Yfeet);
+        TextView Ymiles = (TextView)findViewById(R.id.Ymiles);
+        TextView Totalinch = (TextView)findViewById(R.id.Totalinch);
+        TextView Totalfeet = (TextView)findViewById(R.id.Totalfeet);
+        TextView Totalmiles = (TextView)findViewById(R.id.Totalmiles);
+
+
         _totalDist = data.setTotalDist(_xDist,_yDist);
         System.out.println("x distance from float create: " + _xDist);
         System.out.println("y distance from float create: "+_yDist);
@@ -46,7 +46,8 @@ public class MyActivity extends Activity{
 
         View v = getWindow().getDecorView();
 
-        v.setOnTouchListener(new Touchable(data, totalInches, _density));  //Must give value of data class
+        v.setOnTouchListener(new Touchable(data, Xinch, Xfeet, Xmiles,
+                Yinch, Yfeet, Ymiles, Totalinch, Totalfeet, Totalmiles, _density));  //Must give value of data class
     }
 
     @Override

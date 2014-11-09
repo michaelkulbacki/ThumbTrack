@@ -11,14 +11,25 @@ public class Touchable implements View.OnTouchListener{
 
     private MotionEvent.PointerCoords _event;
     private Data _data;
-    private TextView _textView;
+    private TextView _Xinch, _Xfeet, _Xmiles, _Yinch, _Yfeet, _Ymiles, _Totalinch,
+            _Totalfeet, _Totalmiles;
     private float xInit, yInit;
     private float _xDist, _yDist, _totalDist, _density;
 
-    public Touchable(Data d, TextView view, float density){
+    public Touchable(Data d, TextView Xin, TextView Xfeet, TextView Xmiles,
+                     TextView Yin, TextView Yfeet, TextView Ymiles,
+                     TextView Totalin, TextView Totalfeet, TextView Totalmiles, float density){
         super();
         _data=d;
-        _textView = view;
+        _Xinch = Xin;
+        _Xfeet = Xfeet;
+        _Xmiles = Xmiles;
+        _Yinch = Yin;
+        _Yfeet = Yfeet;
+        _Ymiles = Ymiles;
+        _Totalinch = Totalin;
+        _Totalfeet = Totalfeet;
+        _Totalmiles = Totalmiles;
         _density = density;
 //        System.out.println("Touchable Created");
     }
@@ -64,7 +75,16 @@ public class Touchable implements View.OnTouchListener{
 //                System.out.println("Total x distance: "+a);
 //                System.out.println("Total y distance: "+b);
                 _data.setTotalDist(motionEvent.getRawX() - xInit, motionEvent.getRawY() - yInit);
-                _textView.setText("" + calcXInch());
+                _Xinch.setText("" + calcXInch());
+                _Xfeet.setText("" + calcXFeet());
+                _Xmiles.setText("" + calcXMiles());
+                _Yinch.setText("" + calcYInch());
+                _Yfeet.setText("" + calcYFeet());
+                _Ymiles.setText("" + calcYMiles());
+                _Totalinch.setText("" + calcTotalInch());
+                _Totalfeet.setText("" + calcTotalFeet());
+                _Totalmiles.setText("" + calcTotalMiles());
+
 //            System.out.println("Touch end"+'\n');
 
             }
