@@ -4,6 +4,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
+import java.sql.Time;
+import java.util.Timer;
+
 /**
  * Created by John on 11/7/14.
  */
@@ -11,6 +14,7 @@ public class Touchable implements View.OnTouchListener{
     private MotionEvent.PointerCoords _event;
     private Data _data;
     private float xInit, yInit;
+
     public Touchable(Data d){
         super();
         _data=d;
