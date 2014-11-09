@@ -12,7 +12,7 @@ public class Touchable implements View.OnTouchListener{
 
     private MotionEvent.PointerCoords _event;
     private int _count;
-    private double[] _list;
+    private int[] _list;
     private Data _data;
     private TextView _Xinch, _Yinch, _Totalinch, _velocity;
     private float xInit, yInit;
@@ -21,7 +21,7 @@ public class Touchable implements View.OnTouchListener{
     public Touchable(Data d, TextView Xin, TextView Yin, TextView Totalin, TextView velocity, float density){
         super();
         _count = 0;
-        _list = new double[10];
+        _list = new int[10];
         _data=d;
         _Xinch = Xin;
         _Yinch = Yin;
@@ -67,7 +67,8 @@ public class Touchable implements View.OnTouchListener{
             double xVel = (double)vTracker.getXVelocity();
             double yVel = (double)vTracker.getYVelocity();
             double total = Math.sqrt(Math.pow(xVel,2)+Math.pow(yVel,2));
-            _list[_count++] = total;
+            int totalV = (int)total;
+            _list[_count++] = totalV;
             if(_count == 10){
                 _count = 0;
                 System.out.println("Average Velocity "+velocity(_list));
@@ -108,8 +109,8 @@ public class Touchable implements View.OnTouchListener{
 
     public float calcTotalMiles(){return calcTotalFeet()/5280;}
 
-    public double velocity(double[] list){
-        double velocity = (list[0]+list[1]+list[2]+list[3]+list[4]+list[5]+list[6]+list[7]+list[8]+list[9])/10.0;
+    public int velocity(int[] list){
+        int velocity = (list[0]+list[1]+list[2]+list[3]+list[4]+list[5]+list[6]+list[7]+list[8]+list[9])/10;
         return velocity;
     }
 }
