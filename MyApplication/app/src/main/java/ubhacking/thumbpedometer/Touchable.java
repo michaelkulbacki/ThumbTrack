@@ -2,6 +2,7 @@ package ubhacking.thumbpedometer;
 
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.TextView;
 
 /**
  * Created by John on 11/7/14.

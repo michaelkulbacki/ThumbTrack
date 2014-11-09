@@ -37,6 +37,8 @@ public class MyActivity extends Activity{
         _density = _save.getFloat("density",setDensity());
         data.setX(_xDist);
         data.setY(_yDist);
+        TextView totalInches = (TextView)findViewById(R.id.totalinches);
+        totalInches.setText("I made a change");
         _totalDist = data.setTotalDist(_xDist,_yDist);
         System.out.println("x distance from float create: " + _xDist);
         System.out.println("y distance from float create: "+_yDist);
