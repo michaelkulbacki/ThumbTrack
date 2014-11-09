@@ -15,26 +15,14 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Large Text"
-        android:id="@+id/Xinch"
+        android:id="@+id/Totalinch"
         android:textColor="#ffffffff"
-        android:layout_marginLeft="30dp"
-        android:layout_below="@+id/Xfeet"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="43dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:id="@+id/Xfeet"
-        android:textColor="#ffffffff"
-        android:layout_toEndOf="@+id/Totalinch"
-        android:layout_marginLeft="49dp"
-        android:layout_below="@+id/Totalmiles"
-        android:layout_toRightOf="@+id/Totalinch"
-        android:layout_marginTop="37dp" />
+        android:layout_row="10"
+        android:layout_column="10"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/Xinch"
+        android:layout_alignStart="@+id/Xinch"
+        android:layout_marginTop="122dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -43,93 +31,26 @@
         android:text="Large Text"
         android:id="@+id/Yinch"
         android:textColor="#ffffffff"
-        android:layout_marginTop="94dp"
+        android:layout_row="11"
+        android:layout_column="9"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="33dp"
         android:layout_below="@+id/Xinch"
-        android:layout_alignLeft="@+id/Xinch"
-        android:layout_alignStart="@+id/Xinch" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="106dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Large Text"
-        android:id="@+id/Yfeet"
+        android:id="@+id/Xinch"
         android:textColor="#ffffffff"
-        android:layout_marginBottom="30dp"
-        android:layout_above="@+id/Ymiles"
-        android:layout_alignLeft="@+id/Ymiles"
-        android:layout_alignStart="@+id/Ymiles" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:id="@+id/Totalinch"
-        android:textColor="#ffffffff"
-        android:layout_alignTop="@+id/Totalmiles"
-        android:layout_alignLeft="@+id/Xinch"
-        android:layout_alignStart="@+id/Xinch" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:id="@+id/Totalfeet"
-        android:textColor="#ffffffff"
-        android:layout_marginTop="97dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:id="@+id/Totalmiles"
-        android:textColor="#ffffffff"
-        android:layout_marginTop="34dp"
-        android:layout_below="@+id/Totalfeet"
-        android:layout_alignLeft="@+id/Totalfeet"
-        android:layout_alignStart="@+id/Totalfeet" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:id="@+id/Ymiles"
-        android:layout_alignTop="@+id/Yinch"
-        android:layout_alignLeft="@+id/Xfeet"
-        android:layout_alignStart="@+id/Xfeet"
-        android:textColor="#ffffffff" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:id="@+id/XMiles"
-        android:layout_alignTop="@+id/Xinch"
-        android:layout_alignRight="@+id/Yfeet"
-        android:layout_alignEnd="@+id/Yfeet"
-        android:textColor="#ffffffff" />
-
-    <GridLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_alignTop="@+id/Totalfeet"
-        android:layout_alignRight="@+id/Totalinch"
-        android:layout_alignEnd="@+id/Totalinch"
-        android:id="@+id/gridLayout"></GridLayout>
-
-    <GridLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"></GridLayout>
+        android:layout_column="9"
+        android:layout_gravity="center_vertical"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/Yinch"
+        android:layout_alignStart="@+id/Yinch" />
 
 </RelativeLayout>
